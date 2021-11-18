@@ -16,3 +16,12 @@
 </div>
 <div id="results">
 </div>
+<div class="row">
+  <div class="col-9">
+    <%if !@tracked_stocks.empty?%>
+      <%=render 'layouts/stocks-table'%>
+    <%else%>
+      <h4 class="pt-3">You are not currently tracking any stocks</h4>
+    <%end%>
+  </div>
+</div>
