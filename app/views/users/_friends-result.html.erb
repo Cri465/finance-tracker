@@ -1,0 +1,24 @@
+<div class="d-inline-block">
+  <%=render "layouts/messages"%>
+</div>
+<h1><%=@test.length%></h1>
+<%if @test%>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@test.each do |t|%>
+        <tr>
+          <td><%=t.first_name%></td>
+          <td><%=t.last_name%></td>
+          <td>action</td>
+        </tr>
+      <%end%>
+    </tbody>
+  </div>
+<%end%>
