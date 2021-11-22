@@ -4,22 +4,10 @@ class UsersController < ApplicationController
   end
 
   def search
-    if params[:terms].present?
-      @users = User.all
-      @test
-      if params[:terms].include?("@")
-        @test = @users.where("email LIKE?", "%" + params[:terms] + "%")
-      else
-        @terms = params[:terms].split(" ")
-        @test = Array.new
-        @users.each do |user|
-          @terms.each do |term|
-            @test << user if user.first_name.include?(term)
-            @test << user if user.last_name.include?(term)
-          end
-        end
-        # @test = User.where("first_name LIKE?", "%"+ @terms[0] +"%").or(User.where("last_name LIKE?", "%"+@terms[1] +"%"))
-      end
+    @test = User.none
+    hello = params[:terms].split(" ")
+    hello.each do |param|
+      @test += User.search(param)
     end
     @test.uniq!
     respond_to do |format|
