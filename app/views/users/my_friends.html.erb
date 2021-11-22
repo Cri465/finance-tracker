@@ -1,14 +1,14 @@
 <h1>My Friends</h1>
 <div class="search-area">
   <h3>Search users</h3>
-  <%=render 'layouts/friends-search'%>
+  <%=render 'friends-search'%>
 </div>
 <div class="row pt-4">
   <div class="col-sm-9 pr-0">
     <div id="results">
     </div>
     <% if !@friends.empty?%>
-      <%=render "layouts/friends-table"%>
+      <%=render "friends-table"%>
     <%end%>
   </div>
 </div>
