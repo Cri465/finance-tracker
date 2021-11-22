@@ -6,19 +6,23 @@
     <table class="table table-sm">
       <thead>
         <tr>
-          <th scope="col">Email</th>
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <%@results.each do |t|%>
+        <%@results.each do |result|%>
           <tr>
-            <td><%=t.email%></td>
-            <td><%=t.first_name%></td>
-            <td><%=t.last_name%></td>
-            <td><%= link_to "Follow", "#",  class: "btn btn-outline-success"%></td>
+            <td><%= link_to result.first_name, user_path(result)%></td>
+            <td><%=result.last_name%></td>
+            <td><%=result.email%></td>
+            <% if current_user.not_friends_with?(result.id)%>
+              <td><%= link_to "Follow", friendships_path(friend: result),  class: "btn btn-outline-success",method: :post%></td>
+            <%else%>
+              <td><span class="badge badge-success">Already Friends</span> </td>
+            <%end%>
           </tr>
         <%end%>
       </tbody>

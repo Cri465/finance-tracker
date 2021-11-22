@@ -1,0 +1,33 @@
+<h2>User Details</h2>
+</div>
+<div class="container">
+  <div class="card card-header results-block">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%=@user.first_name%></td>
+          <td><%=@user.last_name%></td>
+          <td><%=@user.email%></td>
+          <% if current_user.not_friends_with?(@user.id)%>
+            <td><%= link_to "Follow", friendships_path(friend: @user),  class: "btn btn-outline-success",method: :post%></td>
+          <%else%>
+            <td><span class="badge badge-success">Already Friends</span> </td>
+          <%end%>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-9 pr-0">
+    <%=render 'layouts/stocks-table'%>
+  </div>
+</div>

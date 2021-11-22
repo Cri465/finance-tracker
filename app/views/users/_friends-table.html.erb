@@ -9,9 +9,9 @@
   <tbody>
     <%@friends.each do |friend|%>
       <tr>
-        <td><%= friend.first_name %></td>
+        <td><%= link_to friend.first_name, user_path(friend)%></td>
         <td><%= friend.last_name %></td>
-        <td class="text-right"><%= link_to "stop following", "#",  class: "btn btn-outline-danger"%></td>
+        <td class="text-right"><%= link_to "stop following", friendship_path(friend), method: :delete, data: {confirm: "Are you sure"},  class: "btn btn-outline-danger"%></td>
       </tr>
     <%end%>
   </tbody>
