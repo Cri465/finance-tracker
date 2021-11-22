@@ -4,14 +4,31 @@ class UsersController < ApplicationController
   end
 
   def search
-    @test = User.none
-    hello = params[:terms].split(" ")
-    hello.each do |param|
-      @test += User.search(param)
-    end
-    @test.uniq!
-    respond_to do |format|
-      format.js { render partial: "users/friends-result" }
+    @results = User.none
+
+    if !params[:terms].empty?
+      user_input = params[:terms].split(" ")
+      user_input.each do |param|
+        @results += User.search(param)
+      end
+
+      @results.uniq!
+      @results = results = current_user.except_current_user(@results)
+      if !@results.empty?
+        respond_to do |format|
+          format.js { render partial: "users/friends-result" }
+        end
+      else
+        respond_to do |format|
+          flash.now[:alert] = "Couldn't find user"
+          format.js { render partial: "users/friends-result" }
+        end
+      end
+    else
+      respond_to do |format|
+        flash.now[:alert] = "Please enter a friend name or email to search"
+        format.js { render partial: "users/friends-result" }
+      end
     end
   end
 
