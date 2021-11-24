@@ -27,7 +27,9 @@ class StocksController < ApplicationController
 		current_user.stocks.each do |stock|
 			stock.update_price
 		end
-		flash[:notice] = "Stock prices successfully updated"
-		redirect_to my_portfolio_path
+		respond_to do |format|
+			flash.now[:alert] = "Prices successfully updated"
+			format.js { render partial: "layouts/stocks-table" }
+		end
 	end
 end

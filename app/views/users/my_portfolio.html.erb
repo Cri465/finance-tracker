@@ -10,10 +10,12 @@
     <div class="d-flex justify-content-end">
       <%= link_to "update", update_stock_path(@tracked_stocks), class:"btn btn-outline-info justify-content-end" %>
     </div>
-    <%if !@tracked_stocks.empty?%>
-      <%=render 'layouts/stocks-table'%>
-    <%else%>
-      <h4 class="pt-3">You are not currently tracking any stocks</h4>
-    <%end%>
+    <div id="stock-table">
+      <%if !@tracked_stocks.empty?%>
+        <%=render 'layouts/stocks-table'%>
+      <%else%>
+        <h4 class="pt-3">You are not currently tracking any stocks</h4>
+      <%end%>
+    </div>
   </div>
 </div>
