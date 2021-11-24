@@ -22,4 +22,12 @@ class StocksController < ApplicationController
       end
     end
   end
+
+	def update
+		current_user.stocks.each do |stock|
+			stock.update_price
+		end
+		flash[:notice] = "Stock prices successfully updated"
+		redirect_to my_portfolio_path
+	end
 end

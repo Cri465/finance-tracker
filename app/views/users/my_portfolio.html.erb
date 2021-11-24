@@ -7,6 +7,9 @@
 </div>
 <div class="row">
   <div class="col-9 pr-0">
+    <div class="d-flex justify-content-end">
+      <%= link_to "update", update_stock_path(@tracked_stocks), class:"btn btn-outline-info justify-content-end" %>
+    </div>
     <%if !@tracked_stocks.empty?%>
       <%=render 'layouts/stocks-table'%>
     <%else%>

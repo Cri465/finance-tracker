@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def my_portfolio
     @tracked_stocks = current_user.stocks
+		@user = current_user
   end
 
   def show
@@ -14,7 +15,6 @@ class UsersController < ApplicationController
 
   def search
     @results = User.none
-
     if !params[:terms].empty?
       user_input = params[:terms].split(" ")
       user_input.each do |param|

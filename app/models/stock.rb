@@ -21,4 +21,10 @@ class Stock < ApplicationRecord
   def self.check_db(ticker_symbol)
     where(ticker: ticker_symbol).first
   end
+
+	def update_price
+		update(last_price: Stock.new_lookup(ticker).last_price)
+	end
+
+
 end
