@@ -3,8 +3,7 @@ class StocksController < ApplicationController
   def search
     if params[:stock].present?
       @stock = Stock.new_lookup(params[:stock])
-      if @stock
-				
+      if @stock				
         respond_to do |format|
           format.js { render partial: "users/result" }
         end
@@ -28,7 +27,6 @@ class StocksController < ApplicationController
 			stock.update_price
 		end
 		respond_to do |format|
-			flash.now[:alert] = "Prices successfully updated"
 			format.js { render partial: "layouts/stocks-table" }
 		end
 	end
