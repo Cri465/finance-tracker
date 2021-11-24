@@ -32,7 +32,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials.yml.enc
-/config/credentials.yml
 
 /public/packs
 /public/packs-test
